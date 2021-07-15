@@ -49,8 +49,14 @@ public class Customer {
      *
      */
 
-    @OneToMany(targetEntity = LinkMan.class)
-    @JoinColumn(name = "lkm_cust_id",referencedColumnName = "cust_id")
+//    @OneToMany(targetEntity = LinkMan.class)
+//    @JoinColumn(name = "lkm_cust_id",referencedColumnName = "cust_id")
+
+    /**
+     * 放弃外键维护权
+     *      mappendBy:对方配置关系属性名称
+      */
+    @OneToMany(mappedBy = "customer")
     private Set<LinkMan> linkMans = new HashSet<LinkMan>();
 
     public Set<LinkMan> getLinkMans() {

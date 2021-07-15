@@ -74,5 +74,30 @@ public class OneToManyTest {
         linkManDao.save(linkMan);
     }
 
+    /**
+     * 会有一条多余的update语句
+     *      * 由于一的一方可以维护外键：会发送update语句
+     *      * 解决此问题：只需要在一的一方放弃维护权即可
+     *
+     */
+    @Test
+    @Transactional //配置事务
+    @Rollback(false) //不自动回滚
+    public void testAdd2() {
+        //创建一个客户，创建一个联系人
+        Customer customer = new Customer();
+        customer.setCustName("百度");
+
+        LinkMan linkMan = new LinkMan();
+        linkMan.setLkmName("小李");
+
+
+        linkMan.setCustomer(customer);//由于配置了多的一方到一的一方的关联关系（当保存的时候，就已经对外键赋值）
+        customer.getLinkMans().add(linkMan);//由于配置了一的一方到多的一方的关联关系（发送一条update语句）
+
+        customerDao.save(customer);
+        linkManDao.save(linkMan);
+    }
+
 
 }
