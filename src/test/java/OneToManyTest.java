@@ -99,5 +99,26 @@ public class OneToManyTest {
         linkManDao.save(linkMan);
     }
 
+    /**
+     * 级联添加：保存一个客户的同时，保存客户的所有联系人
+     *      需要在操作主体的实体类上，配置casacde属性
+     */
+    @Test
+    @Transactional //配置事务
+    @Rollback(false) //不自动回滚
+    public void testCascadeAdd() {
+        Customer customer = new Customer();
+        customer.setCustName("百度1");
+
+        LinkMan linkMan = new LinkMan();
+        linkMan.setLkmName("小李1");
+
+        linkMan.setCustomer(customer);
+        customer.getLinkMans().add(linkMan);
+
+        customerDao.save(customer);
+    }
+
+
 
 }

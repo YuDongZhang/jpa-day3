@@ -56,7 +56,7 @@ public class Customer {
      * 放弃外键维护权
      *      mappendBy:对方配置关系属性名称
       */
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private Set<LinkMan> linkMans = new HashSet<LinkMan>();
 
     public Set<LinkMan> getLinkMans() {
