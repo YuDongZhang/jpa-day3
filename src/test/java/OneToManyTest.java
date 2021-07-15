@@ -49,4 +49,30 @@ public class OneToManyTest {
         customerDao.save(customer);
         linkManDao.save(linkMan);
     }
+
+    @Test
+    @Transactional //配置事务
+    @Rollback(false) //不自动回滚
+    public void testAdd1() {
+        //创建一个客户，创建一个联系人
+        Customer customer = new Customer();
+        customer.setCustName("百度");
+
+        LinkMan linkMan = new LinkMan();
+        linkMan.setLkmName("小李");
+
+        /**
+         * 配置联系人到客户的关系（多对一）
+         *    只发送了两条insert语句
+         * 由于配置了联系人到客户的映射关系（多对一）
+         *
+         *
+         */
+        linkMan.setCustomer(customer);
+
+        customerDao.save(customer);
+        linkManDao.save(linkMan);
+    }
+
+
 }
