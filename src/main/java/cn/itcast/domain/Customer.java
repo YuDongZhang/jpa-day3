@@ -53,6 +53,13 @@ public class Customer {
     @JoinColumn(name = "lkm_cust_id",referencedColumnName = "cust_id")
     private Set<LinkMan> linkMans = new HashSet<LinkMan>();
 
+    public Set<LinkMan> getLinkMans() {
+        return linkMans;
+    }
+
+    public void setLinkMans(Set<LinkMan> linkMans) {
+        this.linkMans = linkMans;
+    }
 
     public Long getCustId() {
         return custId;
