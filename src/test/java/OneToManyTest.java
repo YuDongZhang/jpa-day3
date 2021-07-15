@@ -120,5 +120,17 @@ public class OneToManyTest {
     }
 
 
-
+    /**
+     * 级联删除：
+     *      删除1号客户的同时，删除1号客户的所有联系人
+     */
+    @Test
+    @Transactional //配置事务
+    @Rollback(false) //不自动回滚
+    public void testCascadeRemove() {
+        //1.查询1号客户
+        Customer customer = customerDao.findOne(1l);
+        //2.删除1号客户
+        customerDao.delete(customer);
+    }
 }
