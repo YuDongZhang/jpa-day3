@@ -64,4 +64,19 @@ public class ManyToMany {
 
         userDao.save(user);
     }
+
+
+    /**
+     * 案例：删除id为1的用户，同时删除他的关联对象
+     */
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void  testCasCadeRemove() {
+        //查询1号用户
+        User user = userDao.findOne(1l);
+        //删除1号用户
+        userDao.delete(user);
+
+    }
 }
