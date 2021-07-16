@@ -64,4 +64,17 @@ public class ObjectQueryTest {
 
     }
 
+    /**
+     * 从联系人对象导航查询他的所属的客户
+     *      * 从多的一方查一的一方默认使用立即加载
+     */
+    @Test
+    @Transactional//没有事务报错 , 添加
+    public void testQuery3(){
+        LinkMan linkMan = linkManDao.findOne(2l);
+        //对象导航查询所属的客户
+        Customer customer = linkMan.getCustomer();
+        System.out.println(customer);
+    }
+
 }
