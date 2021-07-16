@@ -43,4 +43,25 @@ public class ManyToMany {
         userDao.save(user);
         roleDao.save(role);
     }
+
+
+    //测试级联添加（保存一个用户的同时保存用户的关联角色）
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void  testCasCadeAdd() {
+        User user = new User();
+        user.setUserName("小李");
+
+        Role role = new Role();
+        role.setRoleName("java程序员");
+
+        //配置用户到角色关系，可以对中间表中的数据进行维护     1-1
+        user.getRoles().add(role);
+
+        //配置角色到用户的关系，可以对中间表的数据进行维护     1-1
+        role.getUsers().add(user);
+
+        userDao.save(user);
+    }
 }
