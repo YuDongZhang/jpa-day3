@@ -72,7 +72,7 @@ public class Customer {
      *          LAZY    ：延迟加载
 
      */
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<LinkMan> linkMans = new HashSet<LinkMan>();
 
     public Set<LinkMan> getLinkMans() {
