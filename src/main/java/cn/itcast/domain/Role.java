@@ -14,6 +14,10 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
+    //配置多对多
+    @ManyToMany(mappedBy = "roles")  //配置多表关系
+    private Set<User> users = new HashSet<User>();
+
     public Long getRoleId() {
         return roleId;
     }
@@ -28,5 +32,13 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }
