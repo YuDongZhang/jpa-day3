@@ -37,7 +37,8 @@ public class ManyToMany {
         //配置用户到角色关系，可以对中间表中的数据进行维护     1-1
         user.getRoles().add(role);
 
-
+        //配置角色到用户的关系，可以对中间表的数据进行维护     1-1
+        role.getUsers().add(user);
 
         userDao.save(user);
         roleDao.save(role);
